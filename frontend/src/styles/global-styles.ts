@@ -102,7 +102,7 @@ export const theme = createTheme(
       blue: {
         light: "#E3F3FF",
         dark: "#001D38",
-        main: "#007EAF",
+        main: "#2D69AE",
         contrastText: "#FFFFFF",
       },
       gradient: {
@@ -124,24 +124,6 @@ export const theme = createTheme(
               width: "0.5rem",
               backgroundColor: "#0F2D4A",
             },
-            ".medium-zoom-overlay, .medium-zoom-image--opened": {
-              zIndex: "999",
-            },
-            "&::-webkit-scrollbar-thumb": {
-              borderRadius: "0.5rem",
-              backgroundColor: "#E46962",
-            },
-            "&::-webkit-scrollbar-thumb:hover": {
-              backgroundColor: "#FFBA8F",
-            },
-            ".caf-web-sdk .caf-sdk-upload-container .caf-sdk-upload-overlay ": {
-              background: `#0F2D4A !important`,
-              color: "#000000 !important",
-            },
-            ".caf-sdk-message-container .caf-sdk-message-sub-text .caf-sdk-message-text":
-              {
-                color: "#000000 !important",
-              },
             WebkitTapHighlightColor: "transparent",
             WebkitUserSelect: "none",
             KhtmlUserSelect: "none",
@@ -153,7 +135,7 @@ export const theme = createTheme(
             scrollBehavior: "smooth",
           },
           body: {
-            background: `linear-gradient(135deg, #FFBA8F, #E46962)`,
+            backgroundColor: "#FFFFFF",
           },
           input: {
             autofill: {

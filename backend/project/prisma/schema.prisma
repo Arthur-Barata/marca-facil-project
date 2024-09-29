@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  enrollment   String        @id @unique
+  role         Role          @default(USER)
+  password     String?
+  name         String
+  created_at   DateTime      @default(now())
+  updated_at   DateTime      @updatedAt
+  reservations Reservation[]
+}
+
+model Reservation {
+  id            String   @id @unique @default(uuid())
+  laboratory_id String
+  user_id       String
+  init_date     DateTime
+  end_date      DateTime
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+  subject       String?  @db.VarChar(255)
+
+  material_Reservation Material_Reservation[]
+
+  user       User       @relation(fields: [user_id], references: [enrollment])
+  laboratory Laboratory @relation(fields: [laboratory_id], references: [id])
+}
+
+model Laboratory {
+  id          String        @id @unique @default(uuid())
+  name        String?       @db.VarChar(255)
+  capacity    Int
+  unit        Int
+  machines    Int
+  isAvailable Boolean       @default(true)
+  number      Int
+  floor       Int
+  description String?       @db.Text
+  imageData   String?       @db.LongText
+  imageUrl    String?       @db.Text
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @updatedAt
+  reservation Reservation[]
+}
+
+model Material_Reservation {
+  id             String   @id @unique @default(uuid())
+  reservation_id String
+  material_id    String
+  returned       Boolean
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+
+  Reservation Reservation @relation(fields: [reservation_id], references: [id])
+  Material    Material    @relation(fields: [material_id], references: [id])
+}
+
+model Material {
+  id                   String                 @id @unique @default(uuid())
+  name                 String
+  description          String                 @db.Text
+  category             String
+  quantity             Int
+  created_at           DateTime               @default(now())
+  updated_at           DateTime               @updatedAt
+  material_Reservation Material_Reservation[]
+}
+
+enum Role {
+  ADMIN
+  USER
+}

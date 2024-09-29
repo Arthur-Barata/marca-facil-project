@@ -334,7 +334,7 @@ paket-files/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
-!.vscode/launch.json
+.vscode/launch.json
 !.vscode/extensions.json
 
 # CodeRush
@@ -394,7 +394,7 @@ Temporary Items
 
 =======
 # Local
-.env
+*.env
 dist
 .webpack
 .serverless/**/*.zip
